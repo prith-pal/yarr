@@ -1,0 +1,16 @@
+{
+  "name": "yarr",
+  "version": "1.0.0",
+  "description": "Yet Another React Repo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "init": "npm install && cd spa && npm install && npm run local",
+    "launch": "http-server -o -p 8888 --cors -c-1"
+  },
+  "author": "Prith Pal <prithpal87@gmail.com> https://github.com/prith-pal",
+  "license": "MIT",
+  "dependencies": {
+    "http-server": "^0.8.5"
+  }
+}

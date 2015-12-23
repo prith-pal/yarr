@@ -1,0 +1,73 @@
+/*
+The following are useful resources on setting up a build with Webpack:
+  http://krasimirtsonev.com/blog/article/a-modern-react-starter-pack-based-on-webpack
+  https://github.com/webpack/webpack-with-common-libs/blob/master/gulpfile.js
+  http://www.jayway.com/2014/03/28/running-scripts-with-npm/
+  http://webpack.github.io/docs/configuration.html
+*/
+
+var path = require('path')
+var webpack = require('webpack');
+
+var webpackConfigBase = {
+  __custom: {
+    wpDSPort: 3101,
+    entry: {
+      app: './src/app/app.js',
+      vendor: './src/vendor/vendor.js'
+    }
+  },
+  cache: true,
+  entry: {
+    
+  },
+  
+  hot:false,
+
+  //devtool: 'defined in extended config files'
+
+  //production: 'defined in extended config files'
+
+  output:{
+    path: path.join(__dirname, './../public/js/spa/')//,
+    //filename: 'defined in extended config files'
+  },
+  resolve: {
+    extensions: [
+      "",
+      ".js",
+      '.styl',
+      '.css',
+      '.html'
+    ],
+    modulesDirectories: [
+      "src/app",
+      "src/app/components/layout",
+      'node_modules',
+      'bower_components'
+    ]
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.js$/, 
+        include: [path.resolve(__dirname, "./src")], 
+        loader: 'babel-loader',
+        query: {
+          presets: ['es2015', 'react']
+        }
+      },
+      {
+        test: /\.js$/, 
+        include: [path.resolve(__dirname, "./src")], 
+        loaders: ['react-hot']
+      },
+      { test: /\.styl$/, loader: 'style!css!stylus'}
+    ]
+  },
+  stylus: {
+    import: path.join(__dirname,'src/app/app.styl')
+  }
+};
+
+module.exports = webpackConfigBase;
